@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using vega.Models;
+using vega.Core.Models;
 using vega.Persistence;
 
 namespace vega.Controllers
