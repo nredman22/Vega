@@ -27,6 +27,7 @@ namespace vega.Controllers
         {
             if (!ModelState.IsValid)
             {
+                System.Console.WriteLine("model state bad: ");
                 return BadRequest(ModelState);
             }
 
@@ -37,7 +38,7 @@ namespace vega.Controllers
             await unitOfWork.CompleteAsync();
 
             vehicle = await vehicleRepository.GetVehicle(vehicle.Id);
-            var vr = mapper.Map<Vehicle, SaveVehicleResource>(vehicle);
+            var vr = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(vr);
         }
 
