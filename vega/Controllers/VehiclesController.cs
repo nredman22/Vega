@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -67,7 +68,7 @@ namespace vega.Controllers
             return Ok(vr);
         }
 
-        [HttpPut("{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicle(int id)
         {
             var vehicle = await vehicleRepository.GetVehicle(id, includeRelated: false);
@@ -96,6 +97,25 @@ namespace vega.Controllers
             var vr = mapper.Map<Vehicle, VehicleResource>(vehicle);
 
             return Ok(vr);
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetVehicles()
+        {
+            var vehicles = await vehicleRepository.GetVehicles();
+
+            if (vehicles == null)
+            {
+                return NotFound();
+            }
+
+            var vehicleResources = new List<VehicleResource>();
+            foreach (var vehicle in vehicles)
+            {
+                vehicleResources.Add(mapper.Map<Vehicle, VehicleResource>(vehicle));
+            }
+
+            return Ok(vehicleResources);
         }
     }
 }

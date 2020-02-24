@@ -10,6 +10,14 @@ export class VehicleService {
 
   constructor(private http: HttpClient) { }
 
+  getVehicle(id: Number) {
+    return this.http.get(`/api/vehicles/${id}`);
+  }
+
+  getVehicles() {
+    return this.http.get(`/api/vehicles`);
+  }
+
   getMakes() {
     return this.http.get('/api/makes');
   }
@@ -20,5 +28,13 @@ export class VehicleService {
 
   createVehicle(vehicle) {
     return this.http.post('/api/vehicles', vehicle);
+  }
+
+  updateVehicle(vehicle) {
+    return this.http.put(`/api/vehicles/${vehicle.id}`, vehicle);
+  }
+
+  deleteVehicle(vehicle) {
+    return this.http.delete(`/api/vehicles/${vehicle.id}`);
   }
 }
