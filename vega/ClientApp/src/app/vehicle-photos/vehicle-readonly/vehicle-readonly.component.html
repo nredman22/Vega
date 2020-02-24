@@ -1,0 +1,12 @@
+<h5 class="card-title">Current Vehicle Information</h5>
+<p class="card-text">Make: {{ vehicle.make.name }}</p>
+<p class="card-text">Model: {{ vehicle.model.name }}</p>
+<p class="card-text">Features: </p>
+<p class="card-text" *ngFor="let feature of vehicle.features">{{feature.name}}</p>
+<p class="card-text">Registered: {{ vehicle.isRegistered }}</p>
+<p class="card-text">Contact: {{ vehicle.contact.name }}</p>
+<div class="card-text">
+    <button class="btn btn-primary" (click)="edit()">Edit</button>
+    <button class="btn btn-danger" (click)="delete()">Delete</button>
+</div>
+

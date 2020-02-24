@@ -1,0 +1,23 @@
+<h1>Vehicle</h1>
+<div class="card">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="infoActive ? 'active' : ''" href="#" id="info" (click)="showInfo($event)">Vehicle Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="!infoActive ? 'active' : ''" href="#" id="photo" (click)="showInfo($event)">Photos</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="card-body" *ngIf="infoActive">
+        <app-vehicle-readonly [vehicle]="vehicle"></app-vehicle-readonly>
+    </div>
+    <div class="card-body" *ngIf="!infoActive">
+        <app-vehicle-photo></app-vehicle-photo>
+        <!-- <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+</div>

@@ -12,6 +12,9 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { AppErrorHandler } from './app.error-handler';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { VehicleViewComponent } from './vehicle-photos/vehicle-view.component';
+import { VehicleReadonlyComponent } from './vehicle-photos/vehicle-readonly/vehicle-readonly.component';
+import { VehiclePhotoComponent } from './vehicle-photos/vehicle-photo/vehicle-photo.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
     CounterComponent,
     FetchDataComponent,
     VehicleFormComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    VehicleViewComponent,
+    VehicleReadonlyComponent,
+    VehiclePhotoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,7 +39,8 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'vehicles', component: VehicleListComponent },
       { path: 'vehicles/new', component: VehicleFormComponent },
-      { path: 'vehicles/:id', component: VehicleFormComponent },
+      { path: 'vehicles/:id', component: VehicleViewComponent, pathMatch: 'full' },
+      { path: 'vehicles/:id/edit', component: VehicleFormComponent },
     ])
   ],
   providers: [
