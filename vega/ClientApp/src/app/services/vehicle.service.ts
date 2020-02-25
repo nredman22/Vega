@@ -37,4 +37,14 @@ export class VehicleService {
   deleteVehicle(vehicle) {
     return this.http.delete(`/api/vehicles/${vehicle.id}`);
   }
-}
+
+  uploadPhoto(vehicleId, file) {
+    let formData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post(`/api/vehicles/${vehicleId}/photos`, formData);
+  }
+
+  getPhotos(vehicleId) {
+    return this.http.get(`/api/vehicles/${vehicleId}/photos`);
+  }
+}[]

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using vega.Core;
@@ -41,6 +42,11 @@ namespace vega.Persistence
         {
             return await context.Vehicles
                 .Include(v => v.Model).ThenInclude(vm => vm.Make).ToListAsync();
+        }
+
+        public async Task<ICollection<Photo>> GetPhotos(int vehicleId)
+        {
+            return await context.Photos.Where(p => p.VehicleId == vehicleId).ToListAsync();
         }
     }
 }

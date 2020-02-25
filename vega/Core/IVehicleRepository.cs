@@ -10,5 +10,6 @@ namespace vega.Core
         void DeleteVehicle(Vehicle vehicle);
         Task<Vehicle> GetVehicle(int id, bool includeRelated = true);
         Task<ICollection<Vehicle>> GetVehicles();
+        Task<ICollection<Photo>> GetPhotos(int vehicleId);
     }
 }

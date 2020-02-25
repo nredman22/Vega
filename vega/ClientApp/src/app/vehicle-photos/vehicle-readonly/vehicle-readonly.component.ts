@@ -9,7 +9,7 @@ import { VehicleService } from 'src/app/services/vehicle.service';
   styleUrls: ['./vehicle-readonly.component.css']
 })
 export class VehicleReadonlyComponent implements OnInit {
-  @Input() vehicle: Vehicle
+  @Input() vehicle: Vehicle;
 
   constructor(private router: Router, private vehicleService: VehicleService) { }
 

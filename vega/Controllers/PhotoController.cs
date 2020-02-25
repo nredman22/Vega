@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,11 +58,30 @@ namespace vega.Controllers
                 await file.CopyToAsync(stream);
             }
 
-            var photo = new Photo { FileName = fileName };
+            var photo = new Photo { FileName = fileName, VehicleId = vehicleId };
             vehicle.Photos.Add(photo);
             await this.unitOfWork.CompleteAsync();
 
             return Ok(mapper.Map<Photo, PhotoResource>(photo));
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetPhotos(int vehicleId)
+        {
+            var photos = await vehicleRepository.GetPhotos(vehicleId);
+
+            if (photos == null)
+            {
+                return NotFound();
+            }
+
+            var photoResources = new List<PhotoResource>();
+            foreach (var photo in photos)
+            {
+                photoResources.Add(mapper.Map<Photo, PhotoResource>(photo));
+            }
+
+            return Ok(photoResources);
         }
     }
 }
