@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,10 +41,10 @@ export class VehicleService {
   uploadPhoto(vehicleId, file) {
     let formData = new FormData();
     formData.append('file', file, file.name);
-    return this.http.post(`/api/vehicles/${vehicleId}/photos`, formData);
+    return this.http.post(`/api/vehicles/${vehicleId}/photos`, formData, { reportProgress: true, observe: 'events'});
   }
 
   getPhotos(vehicleId) {
     return this.http.get(`/api/vehicles/${vehicleId}/photos`);
   }
-}[]
+}

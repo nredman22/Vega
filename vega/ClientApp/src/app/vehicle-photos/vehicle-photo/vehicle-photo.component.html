@@ -1,5 +1,11 @@
 <p>Vehicle Photos</p>
 <input type="file" (change)="uploadPhoto()" #fileInput>
+<div class="progress" *ngIf="uploading">
+    <div class="progress-bar" [style.width]="uploadProgress + '%'">
+        <span class="sr-only">{{ uploadProgress }}% Complete</span>
+    </div>
+</div>
+<p *ngIf="uploading && uploadComplete">Upload Complete!</p>
 <img *ngFor="let photo of photos" src="/uploads/{{ photo.fileName }}" class="img-thumbnail">
 
 
